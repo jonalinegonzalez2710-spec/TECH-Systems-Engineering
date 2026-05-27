@@ -1,1 +1,58 @@
+# Topic 1: Methods of Proof, Induction, and Recursion
 
+This section contains my personal study notes, formal definitions, and practical exercises regarding mathematical proofs, mathematical induction, and recursive structures applied to Computer Science.
+
+## 🎯 Learning Objectives
+* Understand and apply direct, indirect, and contradiction proof methods.
+* Master the Principle of Mathematical Induction (PMI) to prove predicates over discrete structures.
+* Analyze and design recursive definitions and algorithms, establishing their connection with induction.
+
+---
+
+## 🧩 1. Mathematical Proof Methods
+
+In computer science and discrete mathematics, a **proof** is a rigorous logical argument that demonstrates the truth of a mathematical statement beyond any doubt.
+
+### 🔹 Direct Proof (Prueba Directa)
+* **Concept:** To prove an implication $p \rightarrow q$, we assume that the premise $p$ is true, and use logical rules, axioms, and theorems to deduce that the conclusion $q$ must also be true.
+* **Key Use:** Proving properties of even/odd numbers, divisibility, and algebraic identities.
+
+### 🔹 Indirect Proof / Proof by Contrapositive (Prueba por Contraposición)
+* **Concept:** Based on the logical equivalence $p \rightarrow q \equiv \neg q \rightarrow \neg p$. Instead of proving the original statement directly, we assume that the conclusion $q$ is false ($\neg q$) and logically deduce that the premise $p$ must also be false ($\neg p$).
+
+### 🔹 Proof by Contradiction (Prueba por Contradicción / Reductio ad Absurdum)
+* **Concept:** To prove a statement $p$, we assume that $p$ is false ($\neg p$). We then follow logical steps until we reach an impossible statement or a logical contradiction (such as $1 = 0$ or $x \in A \wedge x \notin A$). Since logic cannot lead to a contradiction from true premises, our original assumption ($\neg p$) must be false, meaning $p$ is true.
+* **Classic Example:** Proving that $\sqrt{2}$ is irrational or that the set of prime numbers is infinite.
+
+---
+
+## 🔁 2. The Principle of Mathematical Induction
+
+Mathematical Induction is a powerful proof technique used to prove that a predicate $P(n)$ is true for all natural numbers $n \ge n_0$. It works like a domino effect.
+
+### 🪜 The Two Essential Steps:
+1. **Basis Step (Base Inductiva):** Verify that the statement holds true for the very first value, usually $P(1)$ or $P(0)$.
+2. **Inductive Step (Paso Inductivo):** Prove that **IF** the statement is true for an arbitrary integer $k$ (this assumption is called the **Inductive Hypothesis**), **THEN** it must also be true for the next integer $k+1$.
+   $$P(k) \implies P(k+1)$$
+
+*If both steps are successfully proven, then $P(n)$ is true for all $n \in \mathbb{N}$.*
+
+---
+
+## 🌀 3. Recursion and Structural Definitions
+
+Recursion is the computational counterpart of mathematical induction. A structure, function, or algorithm is **recursive** when it is defined in terms of smaller instances of itself.
+
+### ⚙️ Components of a Recursive Structure:
+* **Base Case (Caso Base):** The simplest instance of the problem that can be solved directly without further recursion. It prevents infinite loops.
+* **Recursive Step (Paso Recursivo):** The part of the definition where the function calls itself with a reduced input, moving closer toward the base case.
+
+### 🖥️ Python Implementation Example (Factorial)
+```python
+def factorial(n):
+    # Base Case
+    if n == 0 or n == 1:
+        return 1
+    # Recursive Step
+    else:
+        return n * factorial(n - 1)
